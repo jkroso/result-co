@@ -1,7 +1,7 @@
 
 # result-co
 
-  Turn a generator function back into a normal one but where any `yield`ed values are awaited before continuing. Promises, thunks, etc.. get you closer to blocking _symantics_ but often the syntax they require obscures that. This can help get your syntax a little closer to the blocking version too.
+  Turn a generator function back into a normal one but where any `yield`ed values are awaited before continuing. Promises, thunks, etc.. get you closer to blocking symantics but often the syntax they require obscures that. This can help get your syntax a little closer to the blocking version too.
 
 ## Installation
 
@@ -20,6 +20,8 @@ var co = require('result-co')
 ## API
 
 ### co(generator)
+
+  `co` takes a generator function and returns a normal one.
 
 ```js
 co(function*(a, b, c){
