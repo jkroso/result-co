@@ -16,7 +16,7 @@ function co(Generator){
     return map(undefined, success, failure)
 
     function success(value){ return step(gen.next (value)) }
-    function failure(value){ return step(gen.throw(value)) }
+    function failure(error){ return step(gen.throw(error)) }
     function step(state){
       if (state.done) return state.value
       return map(state.value, success, failure)
