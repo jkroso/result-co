@@ -1,11 +1,11 @@
 {
   "name": "result-co",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "turn a generator function back into a normal one",
   "keywords": ["co","generator","run"],
   "dependencies": {
     "result-type": "1.0.0",
-    "result": "~0.4.6"
+    "result": "~1.0.2"
   },
   "devDependencies": {
     "serve": "jkroso/serve",
