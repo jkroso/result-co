@@ -1,7 +1,7 @@
 
 # result-co
 
-  Turn a generator function back into a normal one but where any `yield`ed values are awaited before continuing. Promises, thunks, etc.. get you closer to blocking semantics but often the syntax they require obscures that. This can help get your syntax a little closer to the blocking version too.
+  Turn a generator function back into a normal one but where any `yield`ed values are awaited before continuing. Promises, thunks, etc.. get you closer to blocking semantics but often the syntax they require obscures that. This helps get your syntax even closer to the blocking version.
 
 ## Installation
 
@@ -21,10 +21,19 @@ var co = require('result-co')
 
 ### co(generator)
 
-  `co` takes a generator function and returns a normal one.
+  `co` takes a generator function and returns a normal one. Except it will have the special ability to unwrap/await results by yielding them.
 
 ```js
-co(function*(a, b, c){
-  return (yield a) + (yield b) + (yield c)
-})(1,2,3) // => 6
+var Result = require('result')
+var wrap = Result.wrap
+var add = co(function*(a, b){
+  return (yield a) + (yield b)
+})
+add(1,2) // => 3
+add(wrap(1), 2) // => 3
+var one = new Result
+var three = add(one, 2)
+three // => new Result
+one.write(1)
+three // => wrap(3)
 ```
