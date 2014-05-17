@@ -36,4 +36,5 @@ var three = add(one, 2)
 three // => new Result
 one.write(1)
 three // => wrap(3)
+add(three, three) // => 6
 ```
