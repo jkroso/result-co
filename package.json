@@ -4,19 +4,19 @@
   "description": "turn a generator function back into a normal one",
   "keywords": ["co","generator","run"],
   "dependencies": {
-    "result": "~1.0.2"
+    "result": "1"
   },
   "devDependencies": {
     "serve": "jkroso/serve",
+    "babel-core": "5",
     "hydro-chai": "*",
     "hydro-bdd": "*",
     "hydro-dot": "*",
     "hydro": "*",
-    "jsmd": "*",
     "chai": "*"
   },
   "repository": "git://github.com/jkroso/result-co.git",
-  "bugs": "https://github.com/jkroso/result-co/issues",
+  "transpile": [["*.js", "!sourcegraph/babel->js", {"stage": 0}]],
   "author": "Jake Rosoman",
   "files": ["index.js"],
   "license": "MIT"

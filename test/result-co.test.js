@@ -1,6 +1,5 @@
-
-var Result = require('result')
-var co = require('..')
+import Result from 'result'
+import co from '..'
 
 function delay(value){
   var result = new Result
@@ -21,7 +20,7 @@ it('should handle yielded values', function(done){
   co(function*(){ return (yield 1) })().should.equal(1)
   co(function*(){ return (yield delay(1)) })().then(function(n){
     n.should.equal(1)
-  }).node(done)
+  }).then(()=>done(), done)
 })
 
 it('should return a "failed" result if errors aren\'t handled' , function(done){
@@ -40,7 +39,7 @@ it('should put error back inside the generator', function(done){
     } catch (e) {
       e.should.equal(error)
     }
-  })().node(done)
+  })().then(()=>done(), done)
 })
 
 it('should pass in arguments', function(){
@@ -55,5 +54,5 @@ it('should preserve context', function(done){
     this.should.equal(context)
     yield delay(1)
     this.should.equal(context)
-  }).call(context).node(done)
+  }).call(context).then(()=>done(), done)
 })

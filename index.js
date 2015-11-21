@@ -1,7 +1,4 @@
-
-var map = require('result').when
-
-module.exports = co
+import {when} from 'result'
 
 /**
  * turn a generator function back into a normal one
@@ -10,16 +7,11 @@ module.exports = co
  * @return {Function}
  */
 
-function co(Generator){
-  return function(){
-    var gen = Generator.apply(this, arguments)
-    return map(undefined, success, failure)
-
-    function success(value){ return step(gen.next (value)) }
-    function failure(error){ return step(gen.throw(error)) }
-    function step(state){
-      if (state.done) return state.value
-      return map(state.value, success, failure)
-    }
-  }
+export default Generator => function() {
+  const gen = Generator.apply(this, arguments)
+  const success = value => step(gen.next(value))
+  const failure = error => step(gen.throw(error))
+  const step = state =>
+    state.done ? state.value : when(state.value, success, failure)
+  return when(undefined, success, failure)
 }
