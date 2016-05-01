@@ -1,4 +1,3 @@
-
 /**
  * Hydro configuration
  *
@@ -6,12 +5,8 @@
  */
 
 module.exports = function(hydro) {
-  require('babel-core/register')({
-    extensions: ['.js']
-  })
   hydro.set({
     suite: 'result-co',
-    formatter: require('hydro-dot'),
     plugins: [
       require('hydro-chai'),
       require('hydro-bdd')

@@ -1,14 +1,15 @@
 {
   "name": "result-co",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "description": "turn a generator function back into a normal one",
   "keywords": ["co","generator","run"],
   "dependencies": {
-    "result": "1"
+    "result": "2"
   },
   "devDependencies": {
     "serve": "jkroso/serve",
-    "babel-core": "5",
+    "future-node": "*",
+    "hydro-html": "*",
     "hydro-chai": "*",
     "hydro-bdd": "*",
     "hydro-dot": "*",

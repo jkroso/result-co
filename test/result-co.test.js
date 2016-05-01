@@ -1,8 +1,8 @@
-import Result from 'result'
+import Result, {wrap} from 'result'
 import co from '..'
 
 function delay(value){
-  var result = new Result
+  var result = new Result('pending')
   setTimeout(function(){
     if (value instanceof Error) result.error(value)
     else result.write(value)
@@ -15,7 +15,7 @@ it('should return a value', function(){
 })
 
 it('should handle yielded values', function(done){
-  var result = Result.wrap(1)
+  var result = wrap(1)
   co(function*(){ return (yield result) })().should.equal(1)
   co(function*(){ return (yield 1) })().should.equal(1)
   co(function*(){ return (yield delay(1)) })().then(function(n){
